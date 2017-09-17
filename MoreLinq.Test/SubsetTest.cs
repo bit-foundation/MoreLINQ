@@ -45,7 +45,7 @@ namespace MoreLinq.Test
 
             Assert.ThrowsArgumentOutOfRangeException("subsetSize", () =>
             {
-                result.Count(); // this particular exception is deferred until sequence evaluation
+                result.Consume(); // this particular exception is deferred until sequence evaluation
             });
         }
 
@@ -74,7 +74,7 @@ namespace MoreLinq.Test
             var prevSubset = Enumerable.Empty<int>();
             foreach (var subset in result)
             {
-                Assert.GreaterOrEqual(subset.Count(), prevSubset.Count());
+                Assert.GreaterOrEqual(subset.Count, prevSubset.Count());
                 prevSubset = subset;
             }
         }
